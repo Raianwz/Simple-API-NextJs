@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+//import Dank from '../../assets/img/dankmans.gif';
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -10,18 +11,20 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-        <img src="/chatwz.svg" alt="ChatLogo Logo" className={styles.logo} /> API's
+        <img src="/chatwz.svg" alt="ChatWZ Logo" className={styles.logo} />
         </h1>
+        <h2>Dank API's</h2>
+        <img src="https://cdn.betterttv.net/emote/5e3ae53cd736527d5cd26e7b/3x" />
       </main>
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://github.com/raianwz"
           target="_blank"
           rel="noopener noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          <img src="/Raianwz.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
