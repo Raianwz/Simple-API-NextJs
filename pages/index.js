@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import IndexPage from '../src/components/IndexPage'
 import chatwzLogo from '../src/assets/chatwz.svg'
-import rwz from '../src/assets/raianwz.svg'
+import rwz from '../src/assets/Raianwz.svg'
 const Main = styled.main`
     .container{
       margin-top: 5em;
