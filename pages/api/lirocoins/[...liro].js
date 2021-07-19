@@ -5,19 +5,20 @@ export default async function lirocoins(req, res) {
     const LCTOKEN = process.env.LCTOKEN
     const user = liro[0]
     const valor = Number(liro[1])
+    const msg = (texto) => JSON.stringify(texto).replace(/[\\"]/g, '')
     if (!Number(user) && !isNaN(valor)) {
         try{
             const Jebaited = await fetch(`https://api.jebaited.net/addPoints/${LCTOKEN}/${user}/${valor}`)
             if (Jebaited.status === 200) {
-                res.end(`@${user} ganhou ${valor}`)
+                res.end(msg(`@${user} ganhou ${valor}`))
             }else{
-                res.end(`FeelsDankMan @${user} algo deu errado chama o @Raianwz.`)  
+                res.end(msg(`FeelsDankMan @${user} algo deu errado chama o @Raianwz.`))  
             }
         }catch(err){
-            res.end(`FeelsDankMan @${user} algo deu MUITO errado mesmo, chama o @Raianwz`)  
+            res.end(msg(`FeelsDankMan @${user} algo deu MUITO errado mesmo, chama o @Raianwz`))  
         }
         return
     }
     res.status('404')
-    res.end(`Algo deu errado =/`)
+    res.end(msg(`Algo deu errado =/`))
 }
