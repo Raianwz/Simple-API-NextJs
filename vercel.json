@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/bonecoins/:bones", "destination": "/api/bonecoins/:bones" }]
+}
