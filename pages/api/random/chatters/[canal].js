@@ -5,7 +5,7 @@ export default async function randomUser(req, res) {
         const str = (text) => JSON.stringify(text)
         let chatters = await fetch(`https://tmi.twitch.tv/group/user/${canal.toLowerCase()}/chatters`)
         let cList = await chatters.json(), Users = [], Itens = ['broadcaster', 'vips', 'moderators', 'viewers']
-        let FixToArray = (obj) => { if (str(obj) != '[]') { let List = obj; for (let i = 0; i < List.length; i++) Users.push(JSON.stringify(List[i]).replaceAll(/[\[\]\"]/g, '')) } }
+        let FixToArray = (obj) => { if (str(obj) != '[]') { let List = obj; for (let i = 0; i < List.length; i++) Users.push(JSON.stringify(List[i]).replace(/[\[\]\"]/g, '')) } }
 
         for (let i = 0; i < Itens.length; i++) { FixToArray(cList.chatters[`${Itens[i]}`]) }
 
