@@ -1,6 +1,6 @@
-Array.prototype.random = function(){return this[Math.floor(Math.random() * this.length)];}
 export default async function randomUser(req, res) {
     const { canal, ignore } = req.query
+	Array.prototype.random = function(){return this[Math.floor(Math.random() * this.length)];}
     if (isNaN(canal)) {
         let chatters = await fetch(`https://tmi.twitch.tv/group/user/${canal.toLowerCase()}/chatters`)
         let cList = await chatters.json(), Users = [], str = (text) => JSON.stringify(text), filtro;
