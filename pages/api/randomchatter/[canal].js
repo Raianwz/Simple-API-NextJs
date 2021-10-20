@@ -19,7 +19,7 @@ export default async function randomUser(req, res) {
         
         if(Users.length == 0) return res.end(str(`Ocorreu um Erro, ninguem foi encontrado!`).replace(/[\\"]/g, ''))
 
-        res.end(JSON.stringify(`${Users.random()}`).replace(/[\\"]/g, ''))
+        res.end(JSON.stringify(`@${Users.random()}`).replace(/[\\"]/g, ''))
         return
     }
     res.end(JSON.stringify(`Ocorreu um erro, talvez o canal informado seja um número.`).replace(/[\\"]/g, ''))
