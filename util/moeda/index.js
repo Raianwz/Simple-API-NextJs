@@ -4,7 +4,6 @@ const msg = (texto) => JSON.stringify(texto).replace(/[\\"]/g, '')
 export default async function coins(TOKEN, user, valor, res) {
     let resp; TOKEN = TOKEN ?? '';
     user.includes('@') ? user = user.replaceAll('@', '') : false;
-    console.log(res)
 
     if (TOKEN.lenght !== 0 && isNaN(user) && Number(valor)) {
         valor >= 200 && valor <= 800 ? valor *= 2 : false

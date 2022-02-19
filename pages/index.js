@@ -12,8 +12,8 @@ function DankHome() {
           <img src="https://cdn.betterttv.net/emote/5e3ae53cd736527d5cd26e7b/3x" alt="DankHackerMans" className="dankImg" />
           <img className='dankLogo' src={dankLogo.src} alt='Dank API' />
         </div>
-          <p style={{marginTop:"15px"}}>Mantenha seu dispositivo conectado a tomada!</p>
-          <img src="https://cdn.7tv.app/emote/60af5ab898efcb4f69e3b20d/3x" alt="ppDVD"/>
+        <p style={{ marginTop: "15px" }}>Mantenha seu dispositivo conectado a tomada!</p>
+        <img src="https://cdn.7tv.app/emote/60af5ab898efcb4f69e3b20d/3x" alt="ppDVD" />
       </div>
 
       <style jsx>{`
@@ -58,13 +58,13 @@ function Footer() {
   const Raianwz = rwz.src
   return (
     <>
-    <div>
-      <a href="https://github.com/raianwz" target="_blank" rel="noopener noreferrer">
-        Powered by{' '}
-        <img src={Raianwz} alt="Raianwz Logo" />
-      </a>
-    </div>
-    <style jsx>{`
+      <div>
+        <a href="https://github.com/raianwz" target="_blank" rel="noopener noreferrer">
+          Powered by{' '}
+          <img src={Raianwz} alt="Raianwz Logo" />
+        </a>
+      </div>
+      <style jsx>{`
         div{
           border-top: 1px solid #c9d1d9;
           display: flex;
@@ -114,6 +114,5 @@ export default function Home() {
       flex-direction: column;
     }
     `}</style>
-  
   </>)
 }
