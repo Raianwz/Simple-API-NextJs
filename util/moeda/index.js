@@ -7,7 +7,7 @@ export default async function coins(TOKEN, user, valor, res) {
     console.log(res)
 
     if (TOKEN.lenght !== 0 && isNaN(user) && Number(valor)) {
-        valor <= 800 ? valor *= 2 : false
+        valor => 200 && valor <= 800 ? valor *= 2 : false
         const Jebaited = fetch(`https://api.jebaited.net/addPoints/${TOKEN}/${user}/${valor}`)
             .then(rsp => { return rsp })
             .catch((err) => { return resp = res.end(msg(`:/ Desculpe @${user} ocorreu um erro e Você NÃO ganhou seus ${valor}`)) })
