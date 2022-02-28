@@ -10,5 +10,6 @@ module.exports = {
     { source: '/josecoins/:zes*/', destination: '/api/josecoins/:zes*/' },
     { source: '/lirocoins/:liro*/', destination: '/api/lirocoins/:liro*/' },
     { source: '/suncoins/:suns*/', destination: '/api/suncoins/:suns*/' },
+    { source: '/xpcoins/:chips*/', destination: '/api/xpcoins/:chips*/' },
   ],
 }
