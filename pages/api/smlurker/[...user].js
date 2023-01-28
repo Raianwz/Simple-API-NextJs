@@ -12,7 +12,7 @@ export default async function users(req, res) {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${THELIX}`,
-                'Client-ID': TCLIENTID,
+                'Client-ID': `${TCLIENTID}`,
             }
         });
         if (Helix.status === 200 || ivr.status == 200) {
