@@ -1,7 +1,11 @@
-import matchList from "@/pages/api/moeda/match.json";
-import path from 'path';
-import { promises as fs } from 'fs';
-const jsonDirectory = path.join(process.cwd(), 'pages/api/moeda/');
+// const [respMatch, respHelp] = await Promise.all([
+//     fetch('https://json-wz.vercel.app/moedas').then(res => res.json()),
+//     fetch('https://json-wz.vercel.app/help').then(res => res.json())
+//   ]);
+const [respMatch, respHelp] = await Promise.all([
+    fetch('https://json-wz.vercel.app/moedas').then(res => res.arrayBuffer()),
+    fetch('https://json-wz.vercel.app/help').then(res => res.arrayBuffer())
+]);
 
 
 
@@ -10,23 +14,26 @@ export default async function Moedas(req, res) {
     const emote = req.query.coin[1] ?? 'elementsOkay'
     const isJson = checkJson(req.query.coin[2])
     const combina = String(coin).toLocaleUpperCase()
-    const localMatchList = await fs.readFile(jsonDirectory + '/match.json', 'utf8');
+    const MatchBuffer = new Uint8Array(respMatch), HelpBuffer = new Uint8Array(respHelp);
+    let matchList = JSON.parse(Buffer.from(MatchBuffer).toString('utf-8'))
+    let helpList = JSON.parse(Buffer.from(HelpBuffer).toString('utf-8'))
+    matchList = matchList[0]
+    helpList = helpList[0]
+
     const msg = (txt) => isJson == false ? txt.replace(/[\\"]/g, '') : txt
     res.setHeader('Content-Type', 'application/json')
-    
-    
+
+
     if (isNaN(combina)) {
         if (combina.toLocaleLowerCase() == 'all') {
-            res.end(localMatchList)
+            res.end(MatchBuffer)
         }
-        if (matchList[combina] || localMatchList[combina]) {
+        if (matchList[combina]) {
             let moeda = await getCurrency(combina, emote)
-            console.log(moeda)
             res.end(msg(JSON.stringify(moeda)))
         }
         if (combina.toLocaleLowerCase() == 'help') {
-            const localHelpList = await fs.readFile(jsonDirectory + '/help.json', 'utf8');
-            res.end(localHelpList)
+            res.end(HelpBuffer)
         }
     }
     res.status(400).json({
@@ -44,8 +51,6 @@ async function getCurrency(comb, emote) {
     const rp = (valor) => valor.replace('.', ',')
     let saida = "", simb = "R$"
     localCoin.codein !== "BRL" ? simb = localCoin.codein : false;
-    console.log(comb)
-    console.log(saida)
 
     let dia, mes, ano, vData = localCoin.create_date, nData;
     dia = vData.slice(8, 10)
