@@ -1,0 +1,8 @@
+{
+    "Como utilizar essa API": "Abaixo segue exemplos de como utilizar. Por padrão todas as respostas são no formato Texto",
+    "Exemplo-01": "/moeda/USD-BRL/ — Devolve o valor do dolar em reais",
+    "Exemplo-02": "/moeda/usd-brl/ — Também devolve o valor do dolar em reais",
+    "Exemplo-03": "/moeda/EUR-BRL/emote — Devolve o valor do euro em reais com um emote personalizado (Twitch/FFZ/7TV/BTTV)",
+    "Exemplo-04": "/moeda/JPY-BRL/emote/true — Devolve o valor do iene em reais com um emote personalizado no formato JSON",
+    "Ver todas as moedas": "/moeda/all mostra todas as combinações de moedas"
+}
