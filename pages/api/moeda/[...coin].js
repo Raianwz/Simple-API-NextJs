@@ -1,19 +1,18 @@
-
-
-
 export default async function Moedas(req, res) {
     const coin = req.query.coin[0]
     const emote = req.query.coin[1] ?? 'elementsOkay'
     const isJson = checkJson(req.query.coin[2])
-    const combina = String(coin).toLocaleUpperCase()
+    const combina = String(coin).toLocaleUpperCase().replace('\s','')
+    const getCoin = await fetch(`https://economia.awesomeapi.com.br/all/${combina}`)
 
     const msg = (txt) => isJson == false ? txt.replace(/[\\"]/g, '') : txt
     res.setHeader('Content-Type', 'application/json')
     
     if (isNaN(combina)) {
-        let moeda = await getCurrency(combina, emote)
+        let moeda = await getCurrency(getCoin, combina, emote)
         res.status(200)
         res.end(msg(JSON.stringify(moeda)))
+        return
     }
 
     res.status(404).json({
@@ -24,8 +23,7 @@ export default async function Moedas(req, res) {
     res.end()
 }
 
-async function getCurrency(comb, emote) {
-    const getCoin = await fetch(`https://economia.awesomeapi.com.br/all/${comb}`)
+async function getCurrency(getCoin, comb, emote) {
     const rp = (valor) => valor.replace('.', ',')
     let saida = "", simb = "R$"
 
