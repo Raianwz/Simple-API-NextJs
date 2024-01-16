@@ -1,11 +1,11 @@
+const JsonMoedas = await fetch('https://json-wz.vercel.app/moedas')
+let matchList = await JsonMoedas.json(); matchList = matchList[0];
 
 export default async function Moedas(req, res) {
     
     const coin = req.query.coin[0]
     const emote = req.query.coin[1] ?? 'elementsOkay'
     const isJson = checkJson(req.query.coin[2])
-    const JsonMoedas = await fetch('https://json-wz.vercel.app/moedas')
-    let matchList = await JsonMoedas.json(); matchList = matchList[0];
     const combina = String(coin).toLocaleUpperCase()
 
     const msg = (txt) => isJson == false ? txt.replace(/[\\"]/g, '') : txt
@@ -14,7 +14,7 @@ export default async function Moedas(req, res) {
     if (isNaN(combina)) {
         if (matchList[combina]) {
             let moeda = await getCurrency(combina, emote)
-            res.end(msg(JSON.stringify(moeda)))
+            res.status(200).json(msg(JSON.stringify(moeda)))
         }
     }
     res.status(400).json({
