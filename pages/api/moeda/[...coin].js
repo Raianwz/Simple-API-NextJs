@@ -1,44 +1,24 @@
-// const [respMatch, respHelp] = await Promise.all([
-//     fetch('https://json-wz.vercel.app/moedas').then(res => res.json()),
-//     fetch('https://json-wz.vercel.app/help').then(res => res.json())
-//   ]);
-const [respMatch, respHelp] = await Promise.all([
-    fetch('https://json-wz.vercel.app/moedas').then(res => res.arrayBuffer()),
-    fetch('https://json-wz.vercel.app/help').then(res => res.arrayBuffer())
-]);
-
-
 
 export default async function Moedas(req, res) {
+    
     const coin = req.query.coin[0]
     const emote = req.query.coin[1] ?? 'elementsOkay'
     const isJson = checkJson(req.query.coin[2])
+    const JsonMoedas = await fetch('https://json-wz.vercel.app/moedas')
+    let matchList = await JsonMoedas.json(); matchList = matchList[0];
     const combina = String(coin).toLocaleUpperCase()
-    const MatchBuffer = new Uint8Array(respMatch), HelpBuffer = new Uint8Array(respHelp);
-    let matchList = JSON.parse(Buffer.from(MatchBuffer).toString('utf-8'))
-    let helpList = JSON.parse(Buffer.from(HelpBuffer).toString('utf-8'))
-    matchList = matchList[0]
-    helpList = helpList[0]
 
     const msg = (txt) => isJson == false ? txt.replace(/[\\"]/g, '') : txt
     res.setHeader('Content-Type', 'application/json')
 
-
     if (isNaN(combina)) {
-        if (combina.toLocaleLowerCase() == 'all') {
-            res.end(MatchBuffer)
-        }
         if (matchList[combina]) {
             let moeda = await getCurrency(combina, emote)
             res.end(msg(JSON.stringify(moeda)))
         }
-        if (combina.toLocaleLowerCase() == 'help') {
-            res.end(HelpBuffer)
-        }
     }
     res.status(400).json({
-        message: "Verifique as combinações possiveis em /moeda/all",
-        help: "Ajuda em /moeda/help",
+        message: "Verifique as combinações possiveis em /docs/moeda",
         error: "Not Found",
         status: 404,
     })
