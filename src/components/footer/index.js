@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 const RodaPiano = styled.div`
 border-top: 1px solid #c9d1d9;
+margin-top: 10px,
 display: flex;
 flex-direction: column;
 height: 60px;

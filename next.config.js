@@ -13,6 +13,10 @@ const nextConfig = {
     },
     rewrites: async () => [
         {
+            source: '/docs/moeda',
+            destination: '/help',
+        },
+        {
             source: '/:path*',
             destination: '/api/:path*',
         },
